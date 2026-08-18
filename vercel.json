@@ -13,7 +13,7 @@
       "destination": "/api/index.py?__path__=$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ]
