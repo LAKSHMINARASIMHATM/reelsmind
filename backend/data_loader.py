@@ -13,10 +13,22 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 
 def load_sample_reels() -> Dict[str, Any]:
-    """Load the sample Reels dataset."""
-    path = os.path.join(DATA_DIR, "sample_reels.json")
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    """Load the sample Reels dataset with fallback paths for serverless environments."""
+    possible_paths = [
+        os.path.join(os.path.dirname(__file__), "..", "data", "sample_reels.json"),
+        os.path.join(os.path.dirname(__file__), "sample_reels.json"),
+        os.path.join(os.getcwd(), "data", "sample_reels.json"),
+        os.path.join(os.getcwd(), "sample_reels.json"),
+        os.path.join(os.path.dirname(__file__), "..", "sample_reels.json"),
+    ]
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"[WARN] Error reading {path}: {e}")
+    raise FileNotFoundError(f"Could not locate sample_reels.json in any candidate path: {possible_paths}")
 
 
 def get_all_users() -> List[dict]:
