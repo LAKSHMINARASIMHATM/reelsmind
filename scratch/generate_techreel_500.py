@@ -241,8 +241,8 @@ data["student_profiles"] = [
     {
       "profile_id": "P001",
       "name": "Alex — The Aspiring Software Engineer (Built-In Trap Profile)",
-      "description": "Watches R001 (Java Meme), R401 (SWE Lifestyle), R402 (Interview Joke), R441 (Laptop Comparison). Trapped shallow system recommends another Java meme. Strong agent infers Latent Interest: Software Engineering.",
-      "reel_ids": ["R001", "R401", "R402", "R441", "R002", "R171", "R172", "R221", "R222"]
+      "description": "Watches 8 reels: R001 (Java Meme), R401 (SWE Career), R402 (Interview Joke), R441 (Laptop Gadget), R002 (AI Coding), R171 (Tech News), R172 (Gaming/Valorant), R221 (Coding DSA). Inferred Latent Interest: Software Engineering.",
+      "reel_ids": ["R001", "R401", "R402", "R441", "R002", "R171", "R172", "R221"]
     },
     {
       "profile_id": "P002",
