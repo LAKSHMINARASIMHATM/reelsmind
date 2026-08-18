@@ -1,5 +1,6 @@
 import sys
 import os
+import urllib.parse
 
 # Add backend directory to Python module search path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "backend"))
@@ -13,12 +14,12 @@ class VercelMiddleware:
 
     def __call__(self, environ, start_response):
         query_string = environ.get("QUERY_STRING", "")
-        # Parse __path__ from query string if injected by vercel.json rewrite
         subpath = None
         if "__path__=" in query_string:
             for item in query_string.split("&"):
                 if item.startswith("__path__="):
-                    subpath = item.split("=", 1)[1]
+                    raw_val = item.split("=", 1)[1]
+                    subpath = urllib.parse.unquote(raw_val)
                     break
         
         if subpath is not None:
