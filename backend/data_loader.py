@@ -68,9 +68,12 @@ def register_user(username: str, email: str, password: str, full_name: str) -> d
     users.append(new_user)
     data["users"] = users
     path = os.path.join(DATA_DIR, "sample_reels.json")
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-        
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+    except OSError:
+        pass # Read-only filesystem in serverless environments like Vercel
+
     res = dict(new_user)
     res.pop("password", None)
     return res

@@ -1,5 +1,5 @@
 // API service layer — all backend communication
-const BASE = 'http://localhost:8000';
+const BASE = import.meta.env.VITE_API_URL || '';
 
 const api = {
   async getProfiles() {
