@@ -12,27 +12,25 @@ class VercelMiddleware:
         self.wsgi_app = wsgi_app
 
     def __call__(self, environ, start_response):
-        raw_uri = environ.get("RAW_URI") or environ.get("REQUEST_URI") or environ.get("HTTP_X_MATCHED_PATH") or ""
-        path = raw_uri.split("?")[0] if raw_uri else environ.get("PATH_INFO", "")
+        query_string = environ.get("QUERY_STRING", "")
+        # Parse __path__ from query string if injected by vercel.json rewrite
+        subpath = None
+        if "__path__=" in query_string:
+            for item in query_string.split("&"):
+                if item.startswith("__path__="):
+                    subpath = item.split("=", 1)[1]
+                    break
         
-        if path.startswith("/api/index.py"):
-            path = path[len("/api/index.py"):]
-        if not path.startswith("/api"):
-            path = "/api" + (path if path and path != "/" else "")
+        if subpath is not None:
+            environ["PATH_INFO"] = "/api/" + subpath.lstrip("/")
+        else:
+            path = environ.get("PATH_INFO", "")
+            if path.startswith("/api/index.py"):
+                path = path[len("/api/index.py"):]
+            if not path.startswith("/api"):
+                path = "/api" + (path if path and path != "/" else "")
+            environ["PATH_INFO"] = path
             
-        environ["PATH_INFO"] = path
         return self.wsgi_app(environ, start_response)
 
 app.wsgi_app = VercelMiddleware(app.wsgi_app)
-
-@app.errorhandler(404)
-def debug_404(e):
-    return jsonify({
-        "error": "404 Not Found",
-        "request_path": request.path,
-        "request_url": request.url,
-        "PATH_INFO": request.environ.get("PATH_INFO"),
-        "RAW_URI": request.environ.get("RAW_URI"),
-        "REQUEST_URI": request.environ.get("REQUEST_URI"),
-        "HTTP_X_MATCHED_PATH": request.environ.get("HTTP_X_MATCHED_PATH"),
-    }), 404
