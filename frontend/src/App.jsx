@@ -128,8 +128,8 @@ export default function App() {
         <div className="ig-logo-container">
           <span style={{ fontSize: 24 }}>📷</span>
           <div>
-            <div className="ig-logo-text">Instagram</div>
-            <div className="ig-logo-sub">ReelMind AI</div>
+            <div className="ig-logo-text">ReelMind</div>
+            <div className="ig-logo-sub">AI Recommendation Agent</div>
           </div>
         </div>
 
@@ -196,7 +196,7 @@ export default function App() {
           </GlassCard>
         )}
 
-        {loading && <LoadingSpinner text="Analyzing Instagram feed & behavioral signals..." />}
+        {loading && <LoadingSpinner text="Analyzing ReelMind feed & behavioral signals..." />}
 
         {!loading && data && (
           <>
@@ -214,7 +214,7 @@ export default function App() {
             {/* ── 2. VERTICAL REELS SCROLL FEED PAGE ── */}
             {activeTab === 'reels' && (
               <div style={{ marginBottom: 32 }}>
-                <SectionTitle>🎬 Instagram Short-Form Reels Feed</SectionTitle>
+                <SectionTitle>🎬 ReelMind Short-Form Reels Feed</SectionTitle>
                 <ReelFeed
                   initialReels={rawReels}
                   onInteractionUpdate={handleLiveInteractionUpdate}
@@ -258,7 +258,7 @@ export default function App() {
             {/* ── 5. ANALYTICS TAB ── */}
             {activeTab === 'analytics' && (
               <div style={{ marginBottom: 32 }}>
-                <SectionTitle>Instagram Reel Engagement Analytics</SectionTitle>
+                <SectionTitle>ReelMind Reel Engagement Analytics</SectionTitle>
                 <div className="charts-grid">
                   <EngagementBarChart data={data.engagement_analytics} />
                   <InterestRadarChart interests={[

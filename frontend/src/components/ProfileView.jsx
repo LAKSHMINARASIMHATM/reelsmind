@@ -335,7 +335,7 @@ export default function ProfileView({ user, reels, analysisData, onSelectReel })
             borderRadius: 16, width: '100%', maxWidth: 450, padding: 24,
           }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--ig-text)', marginBottom: 16 }}>
-              Edit Instagram Profile
+              Edit ReelMind Profile
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>

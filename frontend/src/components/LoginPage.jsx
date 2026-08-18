@@ -109,7 +109,7 @@ export default function LoginPage({ onLoginSuccess }) {
             }}>
               <div style={{ fontSize: 54, marginBottom: 12 }}>🎬</div>
               <div style={{ fontFamily: 'Grand Hotel, cursive', fontSize: 36, background: 'var(--ig-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 8 }}>
-                Instagram
+                ReelMind
               </div>
               <div style={{ fontSize: 12, color: 'var(--ig-text-secondary)', textAlign: 'center', lineHeight: 1.5 }}>
                 AI Reel Recommendation Agent & TikTok-10M Behavioral Engine
@@ -141,7 +141,6 @@ export default function LoginPage({ onLoginSuccess }) {
             padding: '32px 28px',
             textAlign: 'center',
           }}>
-            {/* Instagram Logo Header */}
             <div style={{
               fontFamily: 'Grand Hotel, cursive',
               fontSize: 42,
@@ -151,7 +150,7 @@ export default function LoginPage({ onLoginSuccess }) {
               marginBottom: 8,
               lineHeight: 1,
             }}>
-              Instagram
+              ReelMind
             </div>
 
             <div style={{ fontSize: 11, color: 'var(--ig-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 24 }}>
